@@ -31,7 +31,8 @@ defmodule Galaxy.Umbrella.MixProject do
       {:phoenix_live_view, "~> 1.0.0-rc.1", override: true},
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
-      {:pbkdf2_elixir, "~> 1.0"}
+      {:pbkdf2_elixir, "~> 1.0"},
+      {:sweet_xml, "~> 0.7.4"},
 
     ]
   end
