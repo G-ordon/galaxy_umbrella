@@ -20,3 +20,10 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+wolfram_app_id =
+  System.get_env("WOLFRAM_APP_ID") ||
+  raise """
+  environment variable WOLFRAM_APP_ID is missing.
+  """
+
+  config :info_says, :wolfram, app_id: wolfram_app_id
