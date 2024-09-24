@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="column column-60">
+    <h1><strong><%= @video.title %></strong></h1><br>
+    <div id="video" data-id={@video.id} data-player-id={player_id(@video)}>
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/{@video.id}?autoplay=1&mute=1"
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="column annotations"><br>
+    <h3><strong>Annotations</strong></h3>
+    <ul>
+      <%= for annotation <- @annotations do %>
+        <li><%= annotation.body %> at <%= annotation.at %></li>
+      <% end %>
+    </ul>
+    <div id="msg-container">
+      <!-- Annotation messages will appear here -->
+    </div>
+    <div>
+      <textarea id="msg-input" rows="4" placeholder="Annotation..."></textarea>
+      <br>
+      <textarea id="comment-input" rows="2" placeholder="Add a comment..."></textarea> <!-- Comment input -->
+      <br>
+      <br><button id="msg-submit" class="button column" type="submit">
+        <strong>Post</strong><br>
+      </button>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="column"><br>
+    <h3><strong>Users</strong></h3>
+    <ul id="user-list">
+      <!-- User list will be populated dynamically -->
+    </ul>
+  </div>
+</div>
