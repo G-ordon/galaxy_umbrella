@@ -8,7 +8,7 @@ defmodule Galaxy.Accounts do
   alias Galaxy.Accounts.User
   alias Pbkdf2
 
-  @token_salt "user socket salt"  # Define your token salt here
+    # Define your token salt here
 
   @doc """
   Returns the list of users.
@@ -97,16 +97,5 @@ defmodule Galaxy.Accounts do
     end
   end
 
-  @doc """
-  Verifies a user token and returns the user if valid.
-  """
-  def verify_user_token(token) do
-    case Phoenix.Token.verify(GalaxyWeb.Endpoint, @token_salt, token) do
-      {:ok, user_id} ->
-        Repo.get(User, user_id)
 
-      {:error, _reason} ->
-        nil  # Token is invalid
-    end
-  end
 end
