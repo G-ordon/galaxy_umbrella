@@ -59,7 +59,7 @@ defmodule GalaxyWeb.MixProject do
       {:galaxy, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:bandit, "~> 1.5"},
-
+      {:info_says, in_umbrella: true},
     ]
   end
 
