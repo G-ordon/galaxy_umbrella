@@ -156,4 +156,13 @@ defmodule Galaxy.Multimedia do
     |> Category.alphabetical()
     |> Repo.all()
   end
+
+  def annotate_video(%Accounts.User{} = user, video_id, attrs) do
+    annotation_attrs = Map.merge(attrs, %{user_id: user.id, video_id: video_id})
+
+    %Annotation{}
+    |> Annotation.changeset(annotation_attrs)
+    |> Repo.insert()
+  end
+
 end
