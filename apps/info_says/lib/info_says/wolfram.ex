@@ -1,22 +1,25 @@
 defmodule InfoSays.Wolfram do
-  import SweetXml
+  @moduledoc """
+  A module for interacting with the Wolfram Alpha API.
 
+  This module implements the InfoSys.Backend behavior and provides
+  methods to compute queries using the Wolfram Alpha service.
+  """
+
+  import SweetXml
   alias InfoSays.Result
 
   @behaviour InfoSays.Backend
-
   @base "http://api.wolframalpha.com/v2/query"
 
   @impl true
-  def name, do: "wolfram"
+  def name, do: "Wolfram"
 
   @impl true
-  def compute(query_str, _opts) do
+  def compute(query_str, _opts \\ []) do
     query_str
     |> fetch_xml()
-    |> xpath(~x"/queryresult/pod[contains(@title, 'Result') or
-              contains(@title, 'Definitions')]
-              /subpod/plaintext/text()")
+    |> xpath(~x"/queryresult/pod[contains(@title, 'Result') or contains(@title, 'Definitions')]/subpod/plaintext/text()")
     |> build_results()
   end
 
@@ -33,8 +36,10 @@ defmodule InfoSays.Wolfram do
 
   defp url(input) do
     "#{@base}?" <>
-    URI.encode_query(appid: id(), input: input, format: "plaintext")
+      URI.encode_query(appid: id(), input: input, format: "plaintext")
   end
 
-  defp id, do: Application.fetch_env!(:info_says, :wolfram)[:app_id]
+  defp id do
+    Application.fetch_env!(:info_says, :wolfram)[:app_id]
+  end
 end
