@@ -1,28 +1,38 @@
 defmodule InfoSays.Counter do
-
   use GenServer
-  def inc(pid), do: GenServer.cast(pid, :inc)
 
-  def dec(pid), do: GenServer.cast(pid, :dec)
-
-  def val(pid) do
-    GenServer.call(pid, :val)
-  end
+  # Client API
 
   def start_link(initial_val) do
-    GenServer.start_link(__MODULE__, initial_val)
+    GenServer.start_link(__MODULE__, initial_val, name: __MODULE__)
   end
 
+  def inc() do
+    GenServer.cast(__MODULE__, :inc)
+  end
+
+  def dec() do
+    GenServer.cast(__MODULE__, :dec)
+  end
+
+  def val(timeout \\ 5000) do
+    GenServer.call(__MODULE__, :val, timeout)
+  end
+
+  # Server Callbacks
+
   def init(initial_val) do
-    Process.send_after(self(), :tick, 1000)
+    Process.send_after(self(), :tick, 1000)  # Schedule the first tick after 1 second
     {:ok, initial_val}
   end
 
-  def handle_info(:tick, val) when val <= 0, do: raise "boom!"
+  def handle_info(:tick, val) when val <= 0 do
+    raise "boom!"
+  end
 
   def handle_info(:tick, val) do
     IO.puts("tick #{val}")
-    Process.send_after(self(), :tick, 1000)
+    Process.send_after(self(), :tick, 1000)  # Schedule the next tick after 1 second
     {:noreply, val - 1}
   end
 
@@ -36,6 +46,5 @@ defmodule InfoSays.Counter do
 
   def handle_call(:val, _from, val) do
     {:reply, val, val}
-
   end
 end
