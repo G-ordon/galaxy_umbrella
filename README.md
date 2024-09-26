@@ -25,7 +25,7 @@ These instructions will help you set up the project on your local machine for de
 ### Prerequisites
 
 Ensure you have the following installed:
-- **Elixir** (version 1.14 or later)
+- **Elixir** (version 1.17.0 or later)
 - **Erlang** (version 26 or later)
 - **PostgreSQL** (for database management)
 - **Node.js** (for managing assets and JavaScript dependencies)
