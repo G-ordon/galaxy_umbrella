@@ -26,16 +26,14 @@ defmodule Galaxy.Umbrella.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.14"},
-      # Required to run "mix format" on ~H/.heex files from the umbrella root
-      # TODO bump on release to {:phoenix_live_view, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 1.0.0-rc.1", override: true},
-      {:ecto_sql, "~> 3.1"},
+      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:ecto_sql, "~> 3.12"},
       {:postgrex, ">= 0.0.0"},
       {:pbkdf2_elixir, "~> 2.2.0"},
-
     ]
-
   end
+
+
 
   # Aliases are shortcuts or tasks specific to the current project.
   # For example, to install project dependencies and perform other setup tasks, run:

@@ -5,7 +5,7 @@ defmodule GalaxyWeb.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      Galaxy.Repo,        # Add the Repo here
+        # Add the Repo here
       GalaxyWeb.Telemetry,
       GalaxyWeb.Endpoint,
       GalaxyWeb.Presence
