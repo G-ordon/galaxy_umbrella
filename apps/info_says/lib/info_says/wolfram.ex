@@ -2,7 +2,7 @@ defmodule InfoSays.Wolfram do
   @moduledoc """
   A module for interacting with the Wolfram Alpha API.
 
-  This module implements the InfoSys.Backend behavior and provides
+  This module implements the InfoSays.Backend behavior and provides
   methods to compute queries using the Wolfram Alpha service.
   """
 
@@ -11,6 +11,9 @@ defmodule InfoSays.Wolfram do
 
   @behaviour InfoSays.Backend
   @base "http://api.wolframalpha.com/v2/query"
+
+  # Fetch the HTTP client from the application environment, defaulting to :httpc if not set
+  @http Application.compile_env(:info_says, :wolfram)[:http_client] || :httpc
 
   @impl true
   def name, do: "Wolfram"
@@ -29,8 +32,10 @@ defmodule InfoSays.Wolfram do
     [%Result{backend: __MODULE__, score: 95, text: to_string(answer)}]
   end
 
+  # Use the custom HTTP client to fetch the XML
   defp fetch_xml(query) do
-    {:ok, {_, _, body}} = :httpc.request(String.to_charlist(url(query)))
+    {:ok, {_, _, body}} = @http.request(String.to_charlist(url(query)))
+
     body
   end
 
