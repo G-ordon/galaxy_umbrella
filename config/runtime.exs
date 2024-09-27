@@ -105,5 +105,6 @@ if config_env() == :prod do
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 
+
   config :galaxy, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 end
