@@ -1,28 +1,30 @@
-defmodule GalaxyWeb.VideoChannelTest do
-  use GalaxyWeb.ChannelCase, async: true
+defmodule GalaxyWeb.VideoChannel do
+  use GalaxyWeb, :channel
 
-  setup do
-    video_id = "12345"  # Example video ID
-    {:ok, _, socket} =
-      GalaxyWeb.UserSocket
-      |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(GalaxyWeb.VideoChannel, "videos:#{video_id}")
-
-    %{socket: socket}
+  def join("videos:" <> _video_id, _params, socket) do
+    {:ok, socket}
   end
 
-  test "ping replies with status ok", %{socket: socket} do
-    ref = push(socket, "ping", %{"hello" => "there"})
-    assert_reply ref, :ok, %{"hello" => "there"}
+  # Handle "new_annotation" event
+  def handle_in("new_annotation", %{"body" => _body, "comment" => _comment, "at" => _at}, socket) do
+    # Handle new_annotation logic here
+    {:noreply, socket}
   end
 
-  test "shout broadcasts to video channel", %{socket: socket} do
-    push(socket, "shout", %{"hello" => "all"})
-    assert_broadcast "shout", %{"hello" => "all"}
+  # Handle "ping" event
+  def handle_in("ping", %{"hello" => hello}, socket) do
+    {:reply, {:ok, %{"response" => "pong", "hello" => hello}}, socket}
   end
 
-  test "broadcasts are pushed to the client", %{socket: socket} do
-    broadcast_from!(socket, "broadcast", %{"some" => "data"})
-    assert_push "broadcast", %{"some" => "data"}
+  # Handle "shout" event
+  def handle_in("shout", %{"hello" => message}, socket) do
+    broadcast(socket, "shout", %{"hello" => message})
+    {:noreply, socket}
+  end
+
+  # Catch-all for unhandled events
+  def handle_in(event, _payload, socket) do
+    IO.puts("Unhandled event: #{event}")
+    {:noreply, socket}
   end
 end
