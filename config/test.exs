@@ -36,3 +36,7 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+  #update the test configuration tou use our stubbed client
+config :info_says, :wolfram,
+      app_id: "G2WE65-8KPYHUJH85",
+      http_client: InfoSays.Test.HTTPClient
