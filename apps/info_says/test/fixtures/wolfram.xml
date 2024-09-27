@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true' error='false' numpods='6'>
+  <pod title='Result'>
+    <subpod>
+      <plaintext>2</plaintext>
+    </subpod>
+  </pod>
+  <pod title='Input interpretation'>
+    <subpod>
+      <plaintext>1 + 1</plaintext>
+    </subpod>
+  </pod>
+  <pod title='Assumptions'>
+    <subpod>
+      <plaintext>None</plaintext>
+    </subpod>
+  </pod>
+  <pod title='Calculation Steps'>
+    <subpod>
+      <plaintext>Step 1: 1 + 1 = 2</plaintext>
+    </subpod>
+  </pod>
+</queryresult>
