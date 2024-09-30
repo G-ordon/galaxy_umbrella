@@ -27,3 +27,7 @@ wolfram_app_id =
   """
 
   config :info_says, :wolfram, app_id: wolfram_app_id
+
+
+  config :info_says, :wolfram,
+  http_client: InfoSays.Test.HTTPClient

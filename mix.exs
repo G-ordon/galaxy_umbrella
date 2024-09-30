@@ -26,10 +26,10 @@ defmodule Galaxy.Umbrella.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.14"},
-      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:phoenix_live_view, "~> 1.0.0-rc.1", override: true},
       {:ecto_sql, "~> 3.12"},
       {:postgrex, ">= 0.0.0"},
-      {:pbkdf2_elixir, "~> 2.2.0"},
+      {:pbkdf2_elixir, "~> 2.2.0"}
     ]
   end
 

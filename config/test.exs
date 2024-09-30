@@ -40,3 +40,6 @@ config :phoenix_live_view,
 config :info_says, :wolfram,
       app_id: "G2WE65-8KPYHUJH85",
       http_client: InfoSays.Test.HTTPClient
+
+config :info_says, :wolfram,
+     http_client: InfoSays.Test.HTTPClient
