@@ -1,7 +1,7 @@
 defmodule InfoSays.Test.HTTPClient do
   @wolfram_xml File.read!("test/fixtures/wolfram.xml")
 
-  # No behaviour defined, so remove @impl
+  # Mock HTTP request logic
   def request(url) do
     url = to_string(url)
 
