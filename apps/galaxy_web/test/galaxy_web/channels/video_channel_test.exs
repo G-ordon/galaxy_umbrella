@@ -1,4 +1,4 @@
-defmodule GalaxyWeb.VideoChannel do
+defmodule GalaxyWeb.VideoChannelTest do
   use GalaxyWeb, :channel
 
   def join("videos:" <> _video_id, _params, socket) do
